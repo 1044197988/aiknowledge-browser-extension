@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灏天文库剪藏助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <span class="brand-name">灏天文库</span>
+      <nav class="header-tabs" aria-label="主导航">
+        <button class="tab active" data-tab="clip" type="button">收藏</button>
+        <button class="tab" data-tab="settings" type="button">设置</button>
+      </nav>
+    </header>
+
+    <div id="clip-panel" class="panel active">
+      <section class="block">
+        <div class="field">
+          <label for="clip-title">标题</label>
+          <input type="text" id="clip-title" placeholder="页面标题" />
+        </div>
+        <div class="field field-url">
+          <label for="clip-url">来源</label>
+          <input type="text" id="clip-url" readonly />
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="field">
+          <label for="clip-collection">文集</label>
+          <div class="input-row">
+            <select id="clip-collection">
+              <option value="">加载中…</option>
+            </select>
+            <button id="btn-refresh-collections" class="btn-icon" type="button" title="刷新文集">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+                <polyline points="21 3 21 9 15 9"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="field">
+          <div class="label-row">
+            <label for="clip-content">正文</label>
+            <button id="toggle-content-btn" class="link-btn" type="button">展开</button>
+          </div>
+          <textarea id="clip-content" rows="5" placeholder="提取页面正文，或直接粘贴内容"></textarea>
+          <div class="field-actions">
+            <button id="btn-extract" class="btn btn-ghost" type="button">提取内容</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <button id="btn-clip" class="btn btn-primary" type="button">保存到文集</button>
+      </footer>
+
+      <div id="clip-status" class="status-bar hidden" role="status"></div>
+    </div>
+
+    <div id="settings-panel" class="panel">
+      <section class="block">
+        <div class="field">
+          <label for="setting-server">服务器</label>
+          <input type="text" id="setting-server" placeholder="https://zzht.tech" />
+          <span class="hint">ht-skills 服务端地址</span>
+        </div>
+        <div class="field">
+          <label for="setting-token">Token</label>
+          <input type="password" id="setting-token" placeholder="个人 API Token" autocomplete="off" />
+          <span class="hint">灏天文库个人中心获取</span>
+        </div>
+      </section>
+
+      <footer class="footer footer-split">
+        <button id="btn-test-connection" class="btn btn-ghost" type="button">测试连接</button>
+        <button id="btn-save-settings" class="btn btn-primary" type="button">保存</button>
+      </footer>
+
+      <div id="settings-status" class="status-bar hidden" role="status"></div>
+    </div>
+  </div>
+
+  <script src="shared/extract.js"></script>
+  <script src="shared/api.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
